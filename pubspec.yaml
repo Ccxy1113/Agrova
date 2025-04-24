@@ -82,6 +82,20 @@ flutter:
     - assets/vegetables/onions.png 
     - assets/vegetables/potatoes.png 
     - assets/vegetables/tomatoes.png
+    - assets/videos/Download.mp4
+    - assets/images/tomato_video.png
+    - assets/videos/smarttech.mp4
+    - assets/videos/harvestvideo.mp4
+    - assets/images/smartimage.png
+    - assets/images/harvestimage.png
+    - assets/images/harvest_stream.png
+    - assets/images/farmers_market.png
+    - assets/images/irrigation.png
+    - assets/images/creator1.png
+    - assets/images/creator2.png
+    - assets/images/creator3.png
+    - assets/images/creator4.png
+    - assets/images/creator5.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
