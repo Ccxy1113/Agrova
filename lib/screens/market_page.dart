@@ -38,7 +38,7 @@ class _MarketPageState extends State<MarketPage>
     super.dispose();
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -62,125 +62,99 @@ class _MarketPageState extends State<MarketPage>
       ),
       body: Column(
         children: [
-          (_tabController.index != 2)
+          (_tabController.index == 0)
               ? Container(
-                  color: const Color(0xFF00A651),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 8.0,
-                  ),
-                  child: Column(
-                    children: [
-                      // Search field for vegetables
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Row(
-                          children: [
-                            const SizedBox(width: 8.0),
-                            const Icon(Icons.search, color: Colors.grey),
-                            const SizedBox(width: 8.0),
-                            Expanded(
-                              child: TextField(
-                                controller: _searchController,
-                                decoration: const InputDecoration(
-                                  hintText: 'Search vegetable...',
-                                  border: InputBorder.none,
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                ),
-                                onChanged: (value) {
-                                  setState(() {
-                                    _marketData.then((market) {
-                                      _filteredVegetables = market.vegetables
-                                          .where((veg) => veg.name
-                                              .toLowerCase()
-                                              .contains(value.toLowerCase()))
+                color: const Color(0xFF00A651),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 8.0,
+                ),
+                child: Column(
+                  children: [
+                    // Search field for vegetables
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Row(
+                        children: [
+                          const SizedBox(width: 8.0),
+                          const Icon(Icons.search, color: Colors.grey),
+                          const SizedBox(width: 8.0),
+                          Expanded(
+                            child: TextField(
+                              controller: _searchController,
+                              decoration: const InputDecoration(
+                                hintText: 'Search vegetable...',
+                                border: InputBorder.none,
+                                hintStyle: TextStyle(color: Colors.grey),
+                              ),
+                              // Update the onChanged in search field:
+                              onChanged: (value) async {
+                                final market = await _marketData;
+                                setState(() {
+                                  _filteredVegetables =
+                                      market.vegetables
+                                          .where(
+                                            (veg) => veg.name
+                                                .toLowerCase()
+                                                .contains(value.toLowerCase()),
+                                          )
                                           .toList();
-                                    });
-                                  });
-                                },
-                              ),
-                            ),
-                            IconButton(
-                              icon: const Icon(
-                                Icons.filter_list,
-                                color: Colors.grey,
-                              ),
-                              onPressed: () {
-                                // Filter functionality
+                                });
                               },
                             ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 8.0),
-                      // Location button
-                      GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MarketLocations(),
                           ),
-                        ),
-                        child: const Row(
-                          children: [
-                            Icon(Icons.location_on, color: Colors.white),
-                            SizedBox(width: 4.0),
-                            Expanded(
-                              child: Text(
-                                'Cameron Highland Market',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                                overflow: TextOverflow.ellipsis,
+                          IconButton(
+                            icon: const Icon(
+                              Icons.filter_list,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () {
+                              // Filter functionality
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 8.0),
+                    // Location button
+                    GestureDetector(
+                      onTap:
+                          () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MarketLocations(),
+                            ),
+                          ),
+                      child: const Row(
+                        children: [
+                          Icon(Icons.location_on, color: Colors.white),
+                          SizedBox(width: 4.0),
+                          Expanded(
+                            child: Text(
+                              'Cameron Highland Market',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
                               ),
+                              overflow: TextOverflow.ellipsis,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                )
-              : Container(
-                  color: const Color(0xFF00A651),
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8.0),
                     ),
-                    child: Row(
-                      children: [
-                        const SizedBox(width: 8.0),
-                        const Icon(Icons.search, color: Colors.grey),
-                        const SizedBox(width: 8.0),
-                        Expanded(
-                          child: TextField(
-                            // controller: _marketSearchController,
-                            decoration: const InputDecoration(
-                              hintText: 'Search market...',
-                              border: InputBorder.none,
-                              hintStyle: TextStyle(color: Colors.grey),
-                            ),
-                          ),
-                        ),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.filter_list,
-                            color: Colors.grey,
-                          ),
-                          onPressed: () {
-                            // Optional: add market filter logic
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
+                  ],
                 ),
+              )
+              : Container(
+                color: const Color(0xFF00A651),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 8.0,
+                ),
+              ),
           // Tab bar
           Container(
             decoration: const BoxDecoration(
@@ -212,7 +186,7 @@ class _MarketPageState extends State<MarketPage>
               children: [
                 _buildCurrentPricesTab(),
                 const MarketPriceTrends(),
-                const MarketLocations(),
+                MarketLocations(),
               ],
             ),
           ),

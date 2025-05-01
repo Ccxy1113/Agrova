@@ -309,10 +309,6 @@ class _MarketPriceTrendsState extends State<MarketPriceTrends> {
                 ],
               ),
             ),
-
-            // Bookmark icon
-            const SizedBox(width: 8),
-            Icon(Icons.bookmark_border, color: Colors.grey[400]),
           ],
         ),
       ),
