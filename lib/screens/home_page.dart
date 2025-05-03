@@ -6,6 +6,7 @@ import 'package:agrova/screens/technology.dart';
 import 'package:agrova/screens/video_screen.dart';
 import 'package:agrova/screens/weather_forecast.dart';
 import 'package:agrova/screens/market_page.dart';
+import 'package:agrova/screens/video_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:agrova/services/auth_service.dart';
 import 'package:agrova/screens/all_news_page.dart';
