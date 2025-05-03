@@ -3,6 +3,7 @@ import 'package:agrova/screens/law.dart';
 import 'package:agrova/screens/farm_management_page.dart';
 import 'package:agrova/screens/profile_page.dart';
 import 'package:agrova/screens/technology.dart';
+import 'package:agrova/screens/video_screen.dart';
 import 'package:agrova/screens/weather_forecast.dart';
 import 'package:agrova/screens/market_page.dart';
 import 'package:flutter/material.dart';
@@ -1153,12 +1154,9 @@ class _HomePageState extends State<HomePage> {
           } else if (index == 2) {
             // Home tab
           } else if (index == 3) {
-            // Video tab
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder:(context) => const VideoScreen(),
-              ),
+              MaterialPageRoute(builder: (context) => const VideoScreen()),
             );
           }
         }
