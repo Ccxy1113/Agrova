@@ -1152,10 +1152,14 @@ class _HomePageState extends State<HomePage> {
             );
           } else if (index == 2) {
             // Home tab
-            // You can add navigation to Home page here if needed
           } else if (index == 3) {
             // Video tab
-            // You can add navigation to Video page here if needed
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder:(context) => const VideoScreen(),
+              ),
+            );
           }
         }
       },
