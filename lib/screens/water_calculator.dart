@@ -104,7 +104,10 @@ class _WaterCalculatorPageState extends State<WaterCalculatorPage> {
     }
 
     try {
-      final rate = double.parse(_waterRateController.text);
+      // Application rate in liters per hectare
+      final applicationRate = double.parse(_waterRateController.text);
+
+      // Price per liter in RM
       final pricePerLiter = double.parse(_waterVolumeController.text);
 
       // Extract hectares from the selected land
@@ -112,12 +115,19 @@ class _WaterCalculatorPageState extends State<WaterCalculatorPage> {
       final hectares = double.parse(hectaresText);
 
       setState(() {
-        _totalWaterVolume = rate * hectares;
+        // Total water volume = application rate × land area
+        _totalWaterVolume = applicationRate * hectares;
+
+        // Estimated cost = total volume × price per liter
         _estimatedWaterCost = _totalWaterVolume * pricePerLiter;
       });
     } catch (e) {
       // Handle parsing errors
       print("Error in water calculation: $e");
+      setState(() {
+        _totalWaterVolume = 0.0;
+        _estimatedWaterCost = 0.0;
+      });
     }
   }
 
