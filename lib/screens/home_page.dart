@@ -3,10 +3,8 @@ import 'package:agrova/screens/law.dart';
 import 'package:agrova/screens/farm_management_page.dart';
 import 'package:agrova/screens/profile_page.dart';
 import 'package:agrova/screens/technology.dart';
-import 'package:agrova/screens/video_screen.dart';
 import 'package:agrova/screens/weather_forecast.dart';
 import 'package:agrova/screens/market_page.dart';
-import 'package:agrova/screens/video_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:agrova/services/auth_service.dart';
 import 'package:agrova/screens/all_news_page.dart';
@@ -1154,11 +1152,12 @@ class _HomePageState extends State<HomePage> {
             );
           } else if (index == 2) {
             // Home tab
+            // You can add navigation to Home page here if needed
           } else if (index == 3) {
             Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const VideoScreen()),
-            );
+            context,
+            MaterialPageRoute(builder: (context) => const MarketPage()),
+          );
           }
         }
       },

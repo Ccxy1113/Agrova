@@ -1,4 +1,3 @@
-
 class Market {
   final List<Vegetable> vegetables;
   final DateTime lastUpdated;
@@ -33,10 +32,7 @@ class PriceHistory {
   final DateTime date;
   final double price;
 
-  PriceHistory({
-    required this.date,
-    required this.price,
-  });
+  PriceHistory({required this.date, required this.price});
 }
 
 class MarketLocation {

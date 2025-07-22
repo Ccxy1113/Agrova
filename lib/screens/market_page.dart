@@ -62,7 +62,7 @@ class _MarketPageState extends State<MarketPage>
       ),
       body: Column(
         children: [
-          (_tabController.index == 0)
+          (_tabController.index != 2)
               ? Container(
                 color: const Color(0xFF00A651),
                 padding: const EdgeInsets.symmetric(
@@ -90,18 +90,20 @@ class _MarketPageState extends State<MarketPage>
                                 border: InputBorder.none,
                                 hintStyle: TextStyle(color: Colors.grey),
                               ),
-                              // Update the onChanged in search field:
-                              onChanged: (value) async {
-                                final market = await _marketData;
+                              onChanged: (value) {
                                 setState(() {
-                                  _filteredVegetables =
-                                      market.vegetables
-                                          .where(
-                                            (veg) => veg.name
-                                                .toLowerCase()
-                                                .contains(value.toLowerCase()),
-                                          )
-                                          .toList();
+                                  _marketData.then((market) {
+                                    _filteredVegetables =
+                                        market.vegetables
+                                            .where(
+                                              (veg) => veg.name
+                                                  .toLowerCase()
+                                                  .contains(
+                                                    value.toLowerCase(),
+                                                  ),
+                                            )
+                                            .toList();
+                                  });
                                 });
                               },
                             ),
@@ -154,6 +156,35 @@ class _MarketPageState extends State<MarketPage>
                   horizontal: 16.0,
                   vertical: 8.0,
                 ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 8.0),
+                      const Icon(Icons.search, color: Colors.grey),
+                      const SizedBox(width: 8.0),
+                      Expanded(
+                        child: TextField(
+                          // controller: _marketSearchController,
+                          decoration: const InputDecoration(
+                            hintText: 'Search market...',
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.filter_list, color: Colors.grey),
+                        onPressed: () {
+                          // Optional: add market filter logic
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ),
           // Tab bar
           Container(
@@ -186,7 +217,7 @@ class _MarketPageState extends State<MarketPage>
               children: [
                 _buildCurrentPricesTab(),
                 const MarketPriceTrends(),
-                MarketLocations(),
+                const MarketLocations(),
               ],
             ),
           ),

@@ -4,10 +4,10 @@ class MarketService {
   Future<Market> getMarketData() async {
     // Simulate API delay
     await Future.delayed(const Duration(milliseconds: 800));
-    
+
     // Create sample data
     final now = DateTime.now();
-    
+
     // Sample vegetables with price history
     final List<Vegetable> vegetables = [
       Vegetable(
@@ -121,22 +121,27 @@ class MarketService {
   List<PriceHistory> _generatePriceHistory(double startPrice, int days) {
     final now = DateTime.now();
     final List<PriceHistory> history = [];
-    
+
     double currentPrice = startPrice;
     for (int i = days; i >= 0; i--) {
       final date = DateTime(now.year, now.month, now.day - i);
-      
+
       // Small random price fluctuation
-      final change = (i == 0) ? 0.0 : (0.5 - (i % 3 == 0 ? 0.3 : 0.2)) * (i % 2 == 0 ? 1 : -1);
+      final change =
+          (i == 0)
+              ? 0.0
+              : (0.5 - (i % 3 == 0 ? 0.3 : 0.2)) * (i % 2 == 0 ? 1 : -1);
       currentPrice += change;
       if (currentPrice < 0) currentPrice = 0.1; // Prevent negative prices
-      
-      history.add(PriceHistory(
-        date: date,
-        price: double.parse(currentPrice.toStringAsFixed(2)),
-      ));
+
+      history.add(
+        PriceHistory(
+          date: date,
+          price: double.parse(currentPrice.toStringAsFixed(2)),
+        ),
+      );
     }
-    
+
     return history;
   }
 }
